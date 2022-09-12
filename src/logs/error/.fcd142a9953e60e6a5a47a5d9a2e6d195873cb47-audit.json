@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "D:\\DeveloppementWeb\\0-Kandra_web\\kiama-organisation\\Team\\0-final-project\\kiama-microservice\\users-services\\src\\logs\\error\\.fcd142a9953e60e6a5a47a5d9a2e6d195873cb47-audit.json",
+    "files": [
+        {
+            "date": 1662978778617,
+            "name": "D:\\DeveloppementWeb\\0-Kandra_web\\kiama-organisation\\Team\\0-final-project\\kiama-microservice\\users-services\\src\\logs\\error\\2022-09-12.log",
+            "hash": "d3a0e0a1eae78e7931afffe81b8083eec96aaeb8652f8c64ac2d05a1c2a3baea"
+        }
+    ],
+    "hashType": "sha256"
+}
