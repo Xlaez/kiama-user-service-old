@@ -46,9 +46,15 @@ The repository is structured as follows:
 
 ## Installation
 > To install the users service, follow these steps:
-- Clone the repository
-- Install the dependencies
-- Install globally prisma and dotenv-cli like this:
+- Clone the repository using the following command:
+```bash
+git clone
+```
+- Install the dependencies using the following command:
+```bash
+npm install
+```
+- Install globally prisma and dotenv-cli:
 ```bash
 npm install -g prisma
 npm install -g dotenv-cli
@@ -58,7 +64,7 @@ npm install -g dotenv-cli
 npm run prisma:generate
 npm run dev
 ```
-- The service will be available on port 3000
+- The service will be available on port 3000.
 
 ## License
 This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
