@@ -6,9 +6,15 @@ import { CreateUserDto } from '@dtos/users.dto';
 import { HttpException } from '@exceptions/HttpException';
 import { DataStoredInToken, TokenData } from '@interfaces/auth.interface';
 import { isEmpty } from '@utils/util';
+import MqPublisher from '../queue/producer';
 
 class AuthService {
   public users = new PrismaClient().user;
+  public publisher: (msg: string) => void
+
+  constructor() {
+    this.publisher = new MqPublisher().publish
+  }
 
   public async signup(userData: CreateUserDto): Promise<User> {
     if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
@@ -19,6 +25,13 @@ class AuthService {
     const hashedPassword = await hash(userData.password, 10);
     const createUserData: Promise<User> = this.users.create({ data: { ...userData, password: hashedPassword } });
 
+    const msg = {
+      action: 'signup',
+      data : {
+        ...userData
+      }
+    }
+    this.publisher(JSON.stringify(msg))
     return createUserData;
   }
 
@@ -33,6 +46,14 @@ class AuthService {
 
     const tokenData = this.createToken(findUser);
     const cookie = this.createCookie(tokenData);
+
+    const msg = {
+      action: 'login',
+      data: {
+        ...userData
+      }
+    }
+    this.publisher(JSON.stringify(msg))
 
     return { cookie, findUser };
   }
