@@ -37,6 +37,14 @@ class mqPublisher {
         this.connection.close()
     }
 
+    public deleteQueue = () => {
+        this.channel.deleteQueue(this.queueName)
+    }
+
+    public purgeQueue = () => {
+        this.channel.purgeQueue(this.queueName)
+    }
+
 }
 
 export default mqPublisher
