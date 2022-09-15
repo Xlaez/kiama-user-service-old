@@ -48,7 +48,7 @@ npm install -g dotenv-cli
 npm run prisma:generate
 npm run dev
 ```
-
+- The service will be available on port 3000
 
 ## License
 This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
