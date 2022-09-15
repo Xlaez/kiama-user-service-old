@@ -11,14 +11,14 @@ generator client {
 }
 
 model User {
-  id       String @id @default(uuid()) @db.Uuid
+  id       String @id @default(cuid())
   email    String @unique
   password String
   Post     Post[]
 }
 
 model Post {
-  id       String @id @default(uuid()) @db.Uuid
+  id       String @id @default(cuid())
   title    String
   content  String
   author   User   @relation(fields: [authorId], references: [id])
