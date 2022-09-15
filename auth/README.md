@@ -17,9 +17,19 @@ The repository is structured as follows:
 ```
 ├── src
 │   ├── config
-│   │   ├── config.ts
-│   │   └── server.ts
 │   ├── controllers
+│   ├── dtos
+│   ├── exceptions
+│   ├── http
+│   ├── interfaces
+│   ├── logs
+│   ├── middlewares
+│   ├── prisma
+│   ├── queue
+│   ├── routes
+│   ├── services
+│   ├── tests
+│   ├── utils
 ├── docs
 │   ├── none
 │   │   ├── none
