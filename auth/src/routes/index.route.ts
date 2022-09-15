@@ -1,19 +1,9 @@
-import { Router } from 'express';
-import IndexController from '@controllers/index.controller';
-import { Routes } from '@interfaces/routes.interface';
+import App from '@/app';
+import AuthRoute from '@routes/auth.route';
+import InitialRoute from '@/routes/initial.route';
+import UsersRoute from '@routes/users.route';
 
-class IndexRoute implements Routes {
-  public path = '/';
-  public router = Router();
-  public indexController = new IndexController();
 
-  constructor() {
-    this.initializeRoutes();
-  }
+const app = new App([new InitialRoute(), new UsersRoute(), new AuthRoute()]);
 
-  private initializeRoutes() {
-    this.router.get(`${this.path}`, this.indexController.index);
-  }
-}
-
-export default IndexRoute;
+export default app;
