@@ -4,34 +4,38 @@ import { logger, stream } from '@utils/logger';
 
 
 class mqPublisher {
-  public connection: Connection
-  public channel: amqp.Channel
-  public queueName : string
+    public connection: Connection
+    public channel: amqp.Channel
+    public queueName : string
 
-  constructor() {
-    this.queueName = "kiama-auth"
+    constructor() {
+        this.queueName = "kiama-auth"
 
-    amqp.connect(AMP_URL, (err, conn) => {
-      if (err) {
-        logger.error(err)
-        throw err
-      }
-      this.connection = conn
-      conn.createChannel((err, ch) => {
+        amqp.connect(AMP_URL, (err, conn) => {
         if (err) {
-          logger.error(err)
-          throw err
+            logger.error(err)
+            throw err
         }
-        this.channel = ch
-        ch.assertQueue(this.queueName, { durable: false })
-      })
-    })
-  }
+        this.connection = conn
+        conn.createChannel((err, ch) => {
+            if (err) {
+            logger.error(err)
+            throw err
+            }
+            this.channel = ch
+            ch.assertQueue(this.queueName, { durable: false })
+        })
+        })
+    }
 
-  public publish = (msg: string) => {
-    this.channel.sendToQueue(this.queueName, Buffer.from(msg), { persistent: true })
-    logger.info(`Message sent to queue: ${msg}`)
-  }
+    public publish = (msg: string) => {
+        this.channel.sendToQueue(this.queueName, Buffer.from(msg), { persistent: true })
+        logger.info(`Message sent to queue: ${msg}`)
+    }
+
+    public close = () => {
+        this.connection.close()
+    }
 
 }
 
