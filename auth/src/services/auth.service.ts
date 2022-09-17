@@ -26,8 +26,8 @@ class AuthService {
     const createUserData: Promise<User> = this.users.create({ data: { ...userData, password: hashedPassword } });
 
     const msg = {
-      action: 'signup',
-      data : {
+      action: 'SIGNUP',
+      data: {
         ...userData
       }
     }
@@ -48,7 +48,7 @@ class AuthService {
     const cookie = this.createCookie(tokenData);
 
     const msg = {
-      action: 'login',
+      action: 'LOGIN',
       data: {
         ...userData
       }
